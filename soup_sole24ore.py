@@ -1,5 +1,4 @@
-
-#this script soup il sole 24 ore page to get the current general data
+#this script uses beatifulsoup the "sole 24 ore web page" (you can find it on readme.md) to get the current general data
 
 
 import requests

@@ -61,6 +61,7 @@ def italy_graph():
 
     mpld3.save_html(fig, 'graph.html')
 
+#get data from sole 24 ore and create an html file to after include in index.html with iframe
 def save_html_from_sole_24():
     
     data = ss24.soupCounters()
@@ -84,6 +85,7 @@ def save_html_from_sole_24():
         file.write(html)
         
  
+#get data from api server and create file to after include in index.html with iframe
 def save_html_word():
     
     data = track.getLatest()
@@ -107,7 +109,8 @@ def save_html_word():
         file.write(html)
     
         
-        
+   
+#exec methods
 italy_graph()
 
 save_html_from_sole_24()

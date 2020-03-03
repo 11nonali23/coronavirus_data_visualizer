@@ -1,5 +1,7 @@
 import requests, json
 
+#This script is made to track and parse data (JSON format)
+
 #load JSON file from the implicit url
 def loadJSON(url = 'https://coronavirus-tracker-api.herokuapp.com/all'):
     data = requests.get(url)
@@ -34,8 +36,7 @@ def getLatest():
 def get_Italy(): 
     for obj in data.get('confirmed').get('locations'):
             
-        #here i modify the data from 2/3 to 2/9 because they are wrong.
-        #i just put the same value as 1/3
+        #here i modify the data from 2/3 to 2/9 because they are wrong. I refer other data from sole 24 ore site (find it on readme.md)
         if obj.get('country') == 'Italy':
             obj.get('history')['2/3/20'] = '1180'
             obj.get('history')['2/4/20'] = '1280'            
