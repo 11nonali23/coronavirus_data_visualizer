@@ -33,13 +33,13 @@ def get_Italy():
         #here i modify the data from 2/3 to 2/9 because they are wrong.
         #i just put the same value as 1/3
         if obj.get('country') == 'Italy':
-            obj.get('history')['2/3/20'] = '1128'
-            obj.get('history')['2/4/20'] = '1128'            
-            obj.get('history')['2/5/20'] = '1128'
-            obj.get('history')['2/6/20'] = '1128'
-            obj.get('history')['2/7/20'] = '1128'
-            obj.get('history')['2/8/20'] = '1128'
-            obj.get('history')['2/9/20'] = '1128'
+            obj.get('history')['2/3/20'] = '1180'
+            obj.get('history')['2/4/20'] = '1280'            
+            obj.get('history')['2/5/20'] = '1350'
+            obj.get('history')['2/6/20'] = '1450'
+            obj.get('history')['2/7/20'] = '1520'
+            obj.get('history')['2/8/20'] = '1555'
+            obj.get('history')['2/9/20'] = '1600'
             return(obj)
     return None
 
