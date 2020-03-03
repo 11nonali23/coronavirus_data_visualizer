@@ -21,4 +21,4 @@ This application will:
 * show everything into index.html using iframes
     
     
-Site visible at https://11nonali23.github.io/coronavirus_data_visualizer/
+Site visible at https://11nonali23.github.io/ncovid2019_data_visualizer/
