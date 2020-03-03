@@ -1,11 +1,15 @@
 .column {
   float: left;
-  width: 33%;
+  margin-right: 33px;
+  width: 31%;
+  height: 60px
   font-family: courier,arial,helvetica;
+  border-radius: 20px;
+  background: #ffff99;
 }
 
 .column:hover {
-  text-decoration: underline dotted purple;
+  text-decoration: underline dotted #006600;
 }
 
 /* Clear floats after the columns */
