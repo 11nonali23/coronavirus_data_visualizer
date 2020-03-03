@@ -1,0 +1,71 @@
+.column {
+  float: left;
+  margin-right: 20px;
+  width: 30%;
+  height: 60px
+  font-family: courier,arial,helvetica;
+  border-radius: 20px;
+  background: #ffff99;
+  box-shadow: 2px 2px 5px purple;
+}
+
+.column:hover {
+  /*text-decoration: underline dotted black;
+  transition: text-decoration 0.3s ease-in-out;*/
+}
+
+h2 {
+    display: center;
+    position: relative;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0px;
+    background-color: #0d2482;
+    transform-origin: center;
+    transition: transform 0.60s ease-out;
+}
+
+h2:hover::before{
+    transform: scaleX(0.50);
+    transform-origin: center;
+}
+
+h3 {
+    display: inline-block;
+    position: relative;
+}
+
+h3::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #cc0066;
+    transform-origin: bottom right;
+    transition: transform 0.90s ease-out;
+}
+
+h3:hover::before{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  margin-bottom: 20px; 
+}
+
+

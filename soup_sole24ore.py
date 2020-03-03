@@ -14,20 +14,24 @@ def soupCounters():
 
     soup = BeautifulSoup(page.content, "html.parser")
     
-    general = [val["data-to"] for val in soup.findAll("h2",{"class":"timer"})]
+    general_data = [val["data-to"] for val in soup.findAll("h2",{"class":"timer"})]
     
-    tot = int(general[3])
+    #creating percentual data
+    tot = int(general_data[3])
     
-    deaths = int(general[1])
+    deaths = int(general_data[1])
     
-    rec = int(general[2])
+    rec = int(general_data[2])
     
+    #deaths percentual
     dperc = int(100/(tot/deaths))
     
+    #recovered percentual
     rperc = int(100/(tot/rec))
     
+    #dict with percentual values
     data = {
-        "general": general,
+        "general": general_data,
         "deathperc": dperc,
         "recperc": rperc
     }

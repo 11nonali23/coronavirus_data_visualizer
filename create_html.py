@@ -24,6 +24,7 @@ def parse(date):
         
     return result
 
+#creating italy graph with mpld3 and matplotlib and saving it into html file
 def italy_graph():
     #getting the italy dictionary from JSON file
     italy_dict = track.get_Italy().get('history')
@@ -32,6 +33,7 @@ def italy_graph():
     x = [i for i in range(0,len(italy_dict))]
     y = [int(italy_dict.get(date)) for date in italy_dict]
 
+    #writing the date value every two of them
     ticks = []
     iter = 0;
     for val in italy_dict:
@@ -44,36 +46,44 @@ def italy_graph():
 
 
     #creating the figure with matplotlib
-    fig = Figure(figsize=(8, 4))
+    fig = Figure(figsize=(15, 4))
 
+    #divinding into subplots
     ax = fig.subplots()
 
+    #setting x label
     ax.set_xticks(range(len(italy_dict)))
 
     ax.set_xticklabels(ticks, rotation=45)
 
-
+    #plotting diagram
     ax.plot(x,y)
 
+    #setting labels
     ax.set_xlabel('days from first affected person', size=20)
     ax.set_ylabel('affected people', size=20)
     ax.set_title('People discovered to have virus', size=40)
 
-    mpld3.save_html(fig, 'graph.html')
+    #save html with library function
+    mpld3.save_html(fig, 'dynamic_html_files/graph.html')
+    
+
 
 #get data from sole 24 ore and create an html file to after include in index.html with iframe
 def save_html_from_sole_24():
     
     data = ss24.soupCounters()
     
+    #total cases
     gen = data.get('general')
     
+    #deaths percentual
     dperc = data.get('deathperc')
     
+    #recovered percentual
     rperc = data.get('recperc')
     
-    
-    
+    #creating dyinamic html 
     html = """
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
@@ -84,26 +94,29 @@ def save_html_from_sole_24():
             <h2 style="color: #994d00; text-align: center">DEATHS: {}</h2>
         </div>
         <div class="column">
-            <h2 style="color: #00cc00; text-align: center">RECOVERED: {}</h2>
+            <h2 style="color: #009933; text-align: center">RECOVERED: {}</h2>
         </div>
     </div>
     <div class="percentage_shower">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are recovered from virus disease</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are recovered from virus disease</h3></li>
         </ul>
     </div>
 """.format(gen[3],gen[1],gen[2], dperc, rperc)
 
-    with open('soup_sole24_ore.html', 'w') as file:
+    #write on file
+    with open('dynamic_html_files/soup_sole24_ore.html', 'w') as file:
         file.write(html)
         
  
 #get data from api server and create file to after include in index.html with iframe
 def save_html_word():
     
+    #get latest data
     data = track.getLatest()
     
+    #get percentage of latest data
     percentage = track.get_world_percentage()
     
     html = """
@@ -116,18 +129,19 @@ def save_html_word():
             <h2 style="color: #994d00; text-align: center">DEATHS: {}</h2>
         </div>
         <div class="column">
-            <h2 style="color: #00cc00; text-align: center">RECOVERED: {}</h2>
+            <h2 style="color: #009933; text-align: center">RECOVERED: {}</h2>
         </div>
     </div>
     <div class="percentage_shower">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are recovered from virus disease</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b> about {}%</b> of people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are recovered from virus disease</h3></li>
         </ul>
     </div>
 """.format(data.get('confirmed'), data.get('deaths'), data.get('recovered'), percentage.get('deaths'), percentage.get('recovered'))
 
-    with open('world.html', 'w') as file:
+    #write on file
+    with open('dynamic_html_files/world.html', 'w') as file:
         file.write(html)
     
         
