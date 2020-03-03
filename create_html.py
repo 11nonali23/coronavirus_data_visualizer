@@ -66,6 +66,14 @@ def save_html_from_sole_24():
     
     data = ss24.soupCounters()
     
+    gen = data.get('general')
+    
+    dperc = data.get('deathperc')
+    
+    rperc = data.get('recperc')
+    
+    
+    
     html = """
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
@@ -79,7 +87,13 @@ def save_html_from_sole_24():
             <h2 style="color: #00cc00; text-align: center">RECOVERED: {}</h2>
         </div>
     </div>
-""".format(data[3],data[1],data[2])
+    <div class="percentage_shower">
+        <ul>
+            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are recovered from virus disease</h3></li>
+        </ul>
+    </div>
+""".format(gen[3],gen[1],gen[2], dperc, rperc)
 
     with open('soup_sole24_ore.html', 'w') as file:
         file.write(html)
@@ -90,6 +104,8 @@ def save_html_word():
     
     data = track.getLatest()
     
+    percentage = track.get_world_percentage()
+    
     html = """
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
@@ -103,7 +119,13 @@ def save_html_word():
             <h2 style="color: #00cc00; text-align: center">RECOVERED: {}</h2>
         </div>
     </div>
-""".format(data.get('confirmed'), data.get('deaths'), data.get('recovered'))
+    <div class="percentage_shower">
+        <ul>
+            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica; margin-top: 20px"><b>{}%</b> of people are recovered from virus disease</h3></li>
+        </ul>
+    </div>
+""".format(data.get('confirmed'), data.get('deaths'), data.get('recovered'), percentage.get('deaths'), percentage.get('recovered'))
 
     with open('world.html', 'w') as file:
         file.write(html)

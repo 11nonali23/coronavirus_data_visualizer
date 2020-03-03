@@ -32,6 +32,20 @@ def getLatest():
     
     return latest
 
+def get_world_percentage():
+    
+    con = int(get_confirmed())
+    rec = int(get_recovered())
+    death = int(get_deaths())
+    
+    perc = {
+        "recovered" : int(100/(con/rec)),
+        "deaths": int(100/(con/death))
+    }
+    
+    return perc
+    
+
 #return Italy dictionary of data and save data in italyData.json
 def get_Italy(): 
     for obj in data.get('confirmed').get('locations'):
