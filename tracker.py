@@ -55,13 +55,15 @@ def get_Italy():
             
         #here i modify the data from 2/3 to 2/9 because they are wrong. I refer other data from sole 24 ore site (find it on readme.md)
         if obj.get('country') == 'Italy':
-            obj.get('history')['2/3/20'] = '1180'
-            obj.get('history')['2/4/20'] = '1280'            
-            obj.get('history')['2/5/20'] = '1350'
-            obj.get('history')['2/6/20'] = '1450'
-            obj.get('history')['2/7/20'] = '1520'
-            obj.get('history')['2/8/20'] = '1555'
-            obj.get('history')['2/9/20'] = '1600'
+            
+            obj.get('history')['2/3/20'] = '1228'
+            obj.get('history')['2/4/20'] = '1300'            
+            obj.get('history')['2/5/20'] = '1470'
+            obj.get('history')['2/6/20'] = '1520'
+            obj.get('history')['2/7/20'] = '1590'
+            obj.get('history')['2/8/20'] = '1650'
+            obj.get('history')['2/9/20'] = '1680'
+            
             return(obj)
             
     return None

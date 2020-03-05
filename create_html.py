@@ -26,33 +26,29 @@ def parse(date):
 
 #creating italy graph with mpld3 and matplotlib and saving it into html file
 def italy_graph():
-    #getting the italy dictionary from JSON file
+    
+    #getting italian dictionary
     italy_dict = track.get_Italy().get('history')
+    
+    #getting the italy history from dictionary of italy    
+    history = [val for val in italy_dict]
+    affected = [italy_dict[val] for val in italy_dict]
+    history = history[23:len(history)]
+    affected = affected[23:len(affected)]
 
     #creating x and y coordinates
-    x = [i for i in range(0,len(italy_dict))]
-    y = [int(italy_dict.get(date)) for date in italy_dict]
-
-    #writing the date value every two of them
-    ticks = []
-    iter = 0;
-    for val in italy_dict:
-        if iter == 0:
-            ticks.append(parse(val))
-            iter = iter + 1
-        if iter == 1:
-            ticks.append("")
-            iter = 0
-
+    x = [i for i in range(0,len(history))]
+    y = [int(num) for num in affected]
+    ticks = [parse(val) for val in history]
 
     #creating the figure with matplotlib
-    fig = Figure(figsize=(15, 4))
+    fig = Figure(figsize=(10, 4))
 
     #divinding into subplots
     ax = fig.subplots()
 
     #setting x label
-    ax.set_xticks(range(len(italy_dict)))
+    ax.set_xticks(x)
 
     ax.set_xticklabels(ticks, rotation=45)
 
@@ -60,7 +56,6 @@ def italy_graph():
     ax.plot(x,y)
 
     #setting labels
-    ax.set_xlabel('days from first affected person', size=20)
     ax.set_ylabel('affected people', size=20)
     ax.set_title('People discovered to have virus', size=40)
 
