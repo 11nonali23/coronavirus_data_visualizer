@@ -1,0 +1,32 @@
+table, th, td{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+th,td {
+    padding: 15px;
+}
+
+th {
+    height: 70px;
+    background-color: #009879;
+    font-size: 17px;
+}
+
+table {
+    width: 80%;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.70);
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 10px solid #009879;
+}
+
+table tbody tr:hover {
+    background-color: #a6e4ff;
+    font-weight: bold;
+}
+

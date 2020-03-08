@@ -138,8 +138,48 @@ def save_html_word():
     #write on file
     with open('dynamic_html_files/world.html', 'w') as file:
         file.write(html)
-    
         
+def create_html_italyTable():
+    
+    #getting per region data
+    data = track.get_Italy_Regions()
+    
+    #creating the html string and appending the table definition
+    html = """
+<link rel="stylesheet" type="text/css" href="table.css">
+<table align="center">
+    <tr>
+        <th>Regione</th>
+        <th>Numero Infetti</th>
+        <th>Totali</th>
+        <th>Terapia Intensiva</th>
+        <th>Isolamento Domiciliare</th>
+        <th>Guariti</th>
+        <th>Deceduti</th>
+        <th>Numero tamponi</th>
+    </tr>
+"""
+    
+    #adding the data to the stirng for every region
+    for dic in data:
+        html += "<tr>\n"
+        html += "<td>{}</td>\n".format(dic.get('regione'))
+        html += "<td>{}</td>\n".format(dic.get('numero infetti'))
+        html += "<td>{}</td>\n".format(dic.get('casi totali'))
+        html += "<td>{}</td>\n".format(dic.get('terapia intensiva'))
+        html += "<td>{}</td>\n".format(dic.get('isolamento domiciliare'))
+        html += "<td>{}</td>\n".format(dic.get('guariti'))
+        html += "<td>{}</td>\n".format(dic.get('deceduti'))
+        html += "<td>{}</td>\n".format(dic.get('tamponi'))
+        html += "</tr>\n"
+    
+    #adding table close tag
+    html += "</table>"
+
+                
+    #write on file
+    with open('dynamic_html_files/table.html', 'w') as file:
+        file.write(html) 
    
 #exec methods
 italy_graph()
@@ -147,3 +187,5 @@ italy_graph()
 save_html_from_sole_24()
 
 save_html_word()
+
+create_html_italyTable()

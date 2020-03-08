@@ -71,8 +71,4 @@ def get_Italy():
 def get_Italy_Regions():
     data = loadJSON('https://openpuglia.org/api/?q=getsummarycovid-19')
     
-    for dic in data:
-        for val in dic:
-            print(dic.get(val))
-        
-get_Italy_Regions()
+    return data
