@@ -94,8 +94,8 @@ def save_html_from_sole_24():
     </div>
     <div class="percentage_shower">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are recovered from virus disease</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are recovered from virus disease</h3></li>
         </ul>
     </div>
 """.format(gen[3],gen[1],gen[2], dperc, rperc)
@@ -129,8 +129,8 @@ def save_html_word():
     </div>
     <div class="percentage_shower">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b> about {}%</b> of people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of people are recovered from virus disease</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b> about {}%</b> of the TESTED people are dead</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are recovered from virus disease</h3></li>
         </ul>
     </div>
 """.format(data.get('confirmed'), data.get('deaths'), data.get('recovered'), percentage.get('deaths'), percentage.get('recovered'))
@@ -151,7 +151,7 @@ def create_html_italyTable():
     <tr>
         <th>Regione</th>
         <th>Numero Infetti</th>
-        <th>Totali</th>
+        <th>Totali Positivi al Test</th>
         <th>Terapia Intensiva</th>
         <th>Isolamento Domiciliare</th>
         <th>Guariti</th>
