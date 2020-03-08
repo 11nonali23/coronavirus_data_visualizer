@@ -139,11 +139,13 @@ def save_html_word():
     with open('dynamic_html_files/world.html', 'w') as file:
         file.write(html)
         
+        
+#getting per region data        
+regions_data = track.get_Italy_Regions()
+        
+#creating html for region table
 def create_html_italyTable():
-    
-    #getting per region data
-    data = track.get_Italy_Regions()
-    
+        
     #creating the html string and appending the table definition
     html = """
 <link rel="stylesheet" type="text/css" href="table.css">
@@ -161,7 +163,7 @@ def create_html_italyTable():
 """
     
     #adding the data to the stirng for every region
-    for dic in data:
+    for dic in regions_data:
         html += "<tr>\n"
         html += "<td>{}</td>\n".format(dic.get('regione'))
         html += "<td>{}</td>\n".format(dic.get('numero infetti'))
@@ -180,6 +182,48 @@ def create_html_italyTable():
     #write on file
     with open('dynamic_html_files/table.html', 'w') as file:
         file.write(html) 
+        
+        
+#creating html with mpld3 for pie graph
+
+def create_pie_chart():
+    
+    import matplotlib.pyplot as plt
+    
+    #setting regions i want to display
+    wanted_regions = {'Lombardia','Emilia Romagna','Veneto','Marche','Piemonte','Toscana','Lazio','Campania'}
+    
+    #initializing labels and sizes only with regions i want
+    labels = []
+    sizes = []
+    total_others = 0 #other regions total tamponi
+    region = ''
+    for dic in regions_data:
+        region = dic.get('regione')
+        if region in wanted_regions:
+            labels.append(region)
+            sizes.append(dic.get('tamponi'))
+        else:
+            total_others = total_others + int(dic.get('tamponi'))
+
+    #appending other regions and other regions total sum
+    labels.append('Other Regions')
+    sizes.append(total_others)
+    
+    #labels = [dic.get('regione') for dic in regions_data]
+    #sizes = [int(dic.get('tamponi')) for dic in regions_data]
+    # Pie chart indexes
+    #labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+    #sizes = [15, 30, 45, 10]
+    explode = [0.1 for val in labels]  #setting margin between slices
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.tight_layout()
+
+    mpld3.save_html(fig1, "dynamic_html_files/tamponi_pie.html")
    
 #exec methods
 italy_graph()
@@ -189,3 +233,5 @@ save_html_from_sole_24()
 save_html_word()
 
 create_html_italyTable()
+
+create_pie_chart()
