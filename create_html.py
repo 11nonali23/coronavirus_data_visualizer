@@ -42,7 +42,7 @@ def italy_graph():
     ticks = [parse(val) for val in history]
 
     #creating the figure with matplotlib
-    fig = Figure(figsize=(10, 4))
+    fig = Figure(figsize=(15, 4))
 
     #divinding into subplots
     ax = fig.subplots()
@@ -53,7 +53,7 @@ def italy_graph():
     ax.set_xticklabels(ticks, rotation=45)
 
     #plotting diagram
-    ax.plot(x,y)
+    ax.plot(x,y, color=	'magenta')
 
     #setting labels
     ax.set_ylabel('affected people', size=20)
