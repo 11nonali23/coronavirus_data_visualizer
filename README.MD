@@ -6,7 +6,7 @@ This application was created to test my learning in python with matplotlib, beat
 
 * [Github api cv data](https://github.com/ExpDev07/coronavirus-tracker-api)- Github page
 
-* [Github second api cv data] (https://github.com/ondata/covid19italia/blob/master/)
+* [Github second api cv data](https://github.com/ondata/covid19italia/blob/master/) - second Github page
 
 * [Site for other data](https://lab24.ilsole24ore.com/coronavirus/)
 
