@@ -42,7 +42,7 @@ def italy_graph():
     ticks = [parse(val) for val in history]
 
     #creating the figure with matplotlib
-    fig = Figure(figsize=(15, 4))
+    fig = Figure(figsize=(10, 4))
 
     #divinding into subplots
     ax = fig.subplots()
