@@ -141,7 +141,7 @@ def save_html_word():
         
         
 #getting per region data        
-regions_data = track.get_Italy_Regions()
+#regions_data = track.get_Italy_Regions()
         
 #creating html for region table
 def create_html_italyTable():
@@ -232,6 +232,6 @@ save_html_from_sole_24()
 
 save_html_word()
 
-create_html_italyTable()
+#create_html_italyTable()
 
-create_pie_chart()
+#create_pie_chart()
