@@ -1,4 +1,4 @@
-# ITALIAN NCOVID-2019 DATA VISUALIZER
+# ITALIAN COVID-2019 DATA VISUALIZER
 
 This application was created to test my learning in python with matplotlib, beatifoulsoup and general statements. It visualize the data of the people discovered having coronavirus in italy
 
