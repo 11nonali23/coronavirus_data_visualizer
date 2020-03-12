@@ -12,18 +12,15 @@ Civile site
 
 * [Github second api cv data](https://github.com/pcm-dpc/COVID-19) -Protezione Civile 
 
-* [Site for other data](https://lab24.ilsole24ore.com/coronavirus/)
-
 * [To move matplotlib into web pages](https://mpld3.github.io/) -main web site
 
 ## Description
 
 This application will:
 
-* download on my local machine the files from the urls
+* download on my local machine the files from the urls and clone a data repository
 * run python script to parse JSON and create the html page
 * create html code from the graph with mpld3
-* use beatifoulsoup to get data from other site data and create html
 * show everything into index.html using iframes
     
     
