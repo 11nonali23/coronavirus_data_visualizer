@@ -1,7 +1,6 @@
 from matplotlib.figure import Figure
 import mpld3
 import tracker as track
-import soup_sole24ore as ss24
 
 #This script create html file that are added with iframe into index.html
 
@@ -175,7 +174,7 @@ def general_updates():
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
         <div class="column">
-            <h2 style="color: #ff3300; text-align: center"><p>TOTAL:</p> <p>{}</p></h2>
+            <h2 style="color: #850f71; text-align: center"><p>TOTAL:</p> <p>{}</p></h2>
         </div>
         <div class="column">
             <h2 style="color: #181c6b; text-align: center"><p>POSITIVES:</p> <p>{}</p></h2>
