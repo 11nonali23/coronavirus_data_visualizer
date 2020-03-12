@@ -1,17 +1,21 @@
 .column {
   float: left;
   margin-right: 20px;
-  width: 30%;
-  height: 60px
+  width: 21%;
+  height: 70px
   font-family: courier,arial,helvetica;
   border-radius: 20px;
   background: #ffff99;
   box-shadow: 2px 2px 5px purple;
 }
 
-.column:hover {
-  /*text-decoration: underline dotted black;
-  transition: text-decoration 0.3s ease-in-out;*/
+.increment {
+  float: left;
+  margin-right: 25px;
+  width: 21%;
+  height: 70px
+  font-family: courier,arial,helvetica;
+
 }
 
 h2 {
@@ -24,7 +28,7 @@ h2::before {
     position: absolute;
     width: 100%;
     transform: scaleX(0);
-    height: 2px;
+    height: 3px;
     bottom: 0;
     left: 0px;
     background-color: #0d2482;
@@ -33,13 +37,14 @@ h2::before {
 }
 
 h2:hover::before{
-    transform: scaleX(0.50);
+    transform: scaleX(0.70);
     transform-origin: center;
 }
 
 h3 {
     display: inline-block;
     position: relative;
+    margin-top: 30px;
 }
 
 h3::before {
@@ -59,6 +64,13 @@ h3:hover::before{
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+.plus {
+    display: center;
+    position: relative;
+    margin-left: 40%;
+}
+
 
 /* Clear floats after the columns */
 .row:after {

@@ -24,11 +24,11 @@ def parse(date):
     
     return result
 
+#getting italian dictionary
+italy_list = track.get_Italy()
+
 #creating italy graph with mpld3 and matplotlib and saving it into html file
 def italy_graph():
-    
-    #getting italian dictionary
-    italy_list = track.get_Italy()
     
     #get total cases
     affected = [dic.get('totale_casi') for dic in italy_list]
@@ -61,28 +61,124 @@ def italy_graph():
     #save html with library function
     mpld3.save_html(fig, 'dynamic_html_files/graph.html')
     
-
-
-#get data from sole 24 ore and create an html file to after include in index.html with iframe
-def save_html_from_sole_24():
+#creating italy cure graph with mpld3 and matplotlib and saving it into html file
+def italy_cure_graph():
     
-    data = ss24.soupCounters()
+    #get total cases
+    intensiva = [dic.get('terapia_intensiva') for dic in italy_list]
+    ricoverati = [dic.get('ricoverati_con_sintomi') for dic in italy_list]
+    domiciliare = [dic.get('isolamento_domiciliare') for dic in italy_list]
+
+    #getting all dates
+    history =[dic.get('data') for dic in italy_list]
+
+    #creating x and y coordinates
+    x = [i for i in range(0,len(italy_list))]
+    y_intensiva = [int(num) for num in intensiva]
+    y_ric_sintomi = [int(num) for num in ricoverati]
+    y_domiciliare = [int(num) for num in domiciliare]
     
-    #total cases
-    gen = data.get('general')
+    
+    ticks = [parse(date) for date in history]
+
+    #creating the figure with matplotlib
+    fig = Figure(figsize=(10, 4))
+
+    #divinding into subplots
+    ax = fig.subplots()
+
+    #setting x label
+    ax.set_xticks(x)
+
+    ax.set_xticklabels(ticks, rotation=45)
+
+    #plotting diagram
+    ax.plot(x,y_intensiva, color=	'magenta')
+    ax.plot(x,y_ric_sintomi, color=	'green')
+    ax.plot(x,y_domiciliare, color=	'blue')
+
+    #setting labels
+    ax.set_ylabel('values for all', size=20)
+    ax.set_title('Growth of care methods', size=40)
+
+    ax.legend(["terapia intensiva", "ricoverati con sintomi", "isolamento domiciliare"])
+    
+    #save html with library function
+    mpld3.save_html(fig, 'dynamic_html_files/cure_graph.html')
+    
+#creating italy deaths and recovered graph with mpld3 and matplotlib and saving it into html file
+def italy_death_rec_graph():
+    
+    #get total cases
+    deceduti = [dic.get('deceduti') for dic in italy_list]
+    dimessi = [dic.get('dimessi_guariti') for dic in italy_list]
+
+    #getting all dates
+    history =[dic.get('data') for dic in italy_list]
+
+    #creating x and y coordinates
+    x = [i for i in range(0,len(italy_list))]
+    y_deceduti = [int(num) for num in deceduti]
+    y_dimessi = [int(num) for num in dimessi]
+    
+    
+    ticks = [parse(date) for date in history]
+
+    #creating the figure with matplotlib
+    fig = Figure(figsize=(10, 4))
+
+    #divinding into subplots
+    ax = fig.subplots()
+
+    #setting x label
+    ax.set_xticks(x)
+
+    ax.set_xticklabels(ticks, rotation=45)
+
+    #plotting diagram
+    ax.plot(x,y_deceduti, color=	'magenta')
+    ax.plot(x,y_dimessi, color=	'green')
+
+    #setting labels
+    ax.set_ylabel('values for both', size=20)
+    ax.set_title('Deaths and Recovers', size=40)
+
+    ax.legend(["deceduti", "dimessi e guariti"])
+    
+    #save html with library function
+    mpld3.save_html(fig, 'dynamic_html_files/deceduti_rimessi.html')
+
+        
+#create html for general updates
+def general_updates():
+    #getting last element index
+    last_element = len(italy_list) - 1
+    #getting last element data
+    data = italy_list[last_element]
     
     #deaths percentual
-    dperc = data.get('deathperc')
+    dperc = str(int(100/((data.get('totale_casi'))/(data.get('deceduti')))))
     
     #recovered percentual
-    rperc = data.get('recperc')
+    rperc = str(int(100/((data.get('totale_casi'))/(data.get('dimessi_guariti')))))
     
-    #creating dyinamic html 
+    #getting plus amount of deaths
+    plus_deaths = "+" + str(data.get('deceduti') - italy_list[(last_element - 1)].get('deceduti'))
+    
+    #getting plus amount of recovered
+    plus_rec = "+" + str(data.get('dimessi_guariti') - italy_list[(last_element - 1)].get('dimessi_guariti'))
+    
+    #getting plus amount of total
+    plus_tot = "+" + str(data.get('totale_casi') - italy_list[(last_element - 1)].get('totale_casi'))
+    
     html = """
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
         <div class="column">
             <h2 style="color: #ff3300; text-align: center">TOTAL: {}</h2>
+        </div>
+        <div class="column">
+            <h2 style="color: #181c6b; text-align: center">POSITIVES: {}</h2>
         </div>
         <div class="column">
             <h2 style="color: #994d00; text-align: center">DEATHS: {}</h2>
@@ -91,19 +187,33 @@ def save_html_from_sole_24():
             <h2 style="color: #009933; text-align: center">RECOVERED: {}</h2>
         </div>
     </div>
-    <div class="percentage_shower">
+    <div class="row">
+        <div class="increment">
+            <h3 class="plus" style="color: #bf005c;">{}</h3>
+        </div>
+        <div class="increment">
+            <h3 class="plus" style="color: #bf005c;">{}</h3>
+        </div>
+        <div class="increment">
+            <h3 class="plus" style="color: #bf005c;">{}</h3>
+        </div>
+        <div class="increment">
+            <h3 class="plus" style="color: #bf005c;">{}</h3>
+        </div>
+    </div>
+    <div class="percentage_shower" style="margin-top: 40px;">
         <ul>
             <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are dead</h3></li>
             <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are recovered from virus disease</h3></li>
         </ul>
-    </div>
-""".format(gen[3],gen[1],gen[2], dperc, rperc)
-
-    #write on file
-    with open('dynamic_html_files/soup_sole24_ore.html', 'w') as file:
+    </div>""".format(str(data.get('totale_casi')), str(data.get('totale_attualmente_positivi')), str(data.get('deceduti')), str(data.get('dimessi_guariti')),
+                     plus_tot, "+" + str(data.get('nuovi_attualmente_positivi')), plus_deaths, plus_rec, dperc, rperc)
+    
+        
+    
+    with open('dynamic_html_files/general_updates.html', 'w') as file:
         file.write(html)
         
- 
 #get data from api server and create file to after include in index.html with iframe
 def save_html_word():
     
@@ -151,7 +261,7 @@ def create_html_italyTable():
 <table align="center">
     <tr>
         <th>Regione</th>
-        <th>Numero Totale Infetti</th>
+        <th>Positivi al Test</th>
         <th>Ricoverati con Sintomi</th>
         <th>Terapia Intensiva</th>
         <th>Isolamento Domiciliare</th>
@@ -224,103 +334,11 @@ def create_pie_chart():
 
     mpld3.save_html(fig1, "dynamic_html_files/tamponi_pie.html")
     
-#creating italy cure graph with mpld3 and matplotlib and saving it into html file
-def italy_cure_graph():
-    
-    #getting italian dictionary
-    italy_list = track.get_Italy()
-    
-    #get total cases
-    intensiva = [dic.get('terapia_intensiva') for dic in italy_list]
-    ricoverati = [dic.get('ricoverati_con_sintomi') for dic in italy_list]
-    domiciliare = [dic.get('isolamento_domiciliare') for dic in italy_list]
-
-    #getting all dates
-    history =[dic.get('data') for dic in italy_list]
-
-    #creating x and y coordinates
-    x = [i for i in range(0,len(italy_list))]
-    y_intensiva = [int(num) for num in intensiva]
-    y_ric_sintomi = [int(num) for num in ricoverati]
-    y_domiciliare = [int(num) for num in domiciliare]
-    
-    
-    ticks = [parse(date) for date in history]
-
-    #creating the figure with matplotlib
-    fig = Figure(figsize=(10, 4))
-
-    #divinding into subplots
-    ax = fig.subplots()
-
-    #setting x label
-    ax.set_xticks(x)
-
-    ax.set_xticklabels(ticks, rotation=45)
-
-    #plotting diagram
-    ax.plot(x,y_intensiva, color=	'magenta')
-    ax.plot(x,y_ric_sintomi, color=	'green')
-    ax.plot(x,y_domiciliare, color=	'blue')
-
-    #setting labels
-    ax.set_ylabel('values for all', size=20)
-    ax.set_title('Growth of care methods', size=40)
-
-    ax.legend(["terapia intensiva", "ricoverati con sintomi", "isolamento domiciliare"])
-    
-    #save html with library function
-    mpld3.save_html(fig, 'dynamic_html_files/cure_graph.html')
-    
-#creating italy deaths and recovered graph with mpld3 and matplotlib and saving it into html file
-def italy_death_rec_graph():
-    
-    #getting italian dictionary
-    italy_list = track.get_Italy()
-    
-    #get total cases
-    deceduti = [dic.get('deceduti') for dic in italy_list]
-    dimessi = [dic.get('dimessi_guariti') for dic in italy_list]
-
-    #getting all dates
-    history =[dic.get('data') for dic in italy_list]
-
-    #creating x and y coordinates
-    x = [i for i in range(0,len(italy_list))]
-    y_deceduti = [int(num) for num in deceduti]
-    y_dimessi = [int(num) for num in dimessi]
-    
-    
-    ticks = [parse(date) for date in history]
-
-    #creating the figure with matplotlib
-    fig = Figure(figsize=(10, 4))
-
-    #divinding into subplots
-    ax = fig.subplots()
-
-    #setting x label
-    ax.set_xticks(x)
-
-    ax.set_xticklabels(ticks, rotation=45)
-
-    #plotting diagram
-    ax.plot(x,y_deceduti, color=	'magenta')
-    ax.plot(x,y_dimessi, color=	'green')
-
-    #setting labels
-    ax.set_ylabel('values for both', size=20)
-    ax.set_title('Deaths and Recovers', size=40)
-
-    ax.legend(["deceduti", "dimessi e guariti"])
-    
-    #save html with library function
-    mpld3.save_html(fig, 'dynamic_html_files/deceduti_rimessi.html')
    
 #exec methods
 italy_graph()
 
-save_html_from_sole_24()
+general_updates()
 
 save_html_word()
 
