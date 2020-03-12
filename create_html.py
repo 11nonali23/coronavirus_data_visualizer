@@ -7,39 +7,38 @@ import soup_sole24ore as ss24
 
 #parse the date to remove the year
 def parse(date):
+    
+    #getting last element
+    date_len = len(date) - 1
+    
+    #removing the year part
+    date = date[5: date_len]
+    
     result = ""
     
-    if (date[1] == "/"):
-        result +=date[0:2]
-        if (date[3] == "/"):
-            result += date[2]
-        else:
-            result += date[2:4]
-    else:
-        result += date[0:3]
-        if(date[4] == "/"):
-            result += date[3]
-        else:
-            result += date[3:5]
-        
+    #adding only day and month
+    for char in date:
+        if char == " ":
+            break
+        result += char
+    
     return result
 
 #creating italy graph with mpld3 and matplotlib and saving it into html file
 def italy_graph():
     
     #getting italian dictionary
-    italy_dict = track.get_Italy().get('history')
+    italy_list = track.get_Italy()
     
-    #getting the italy history from dictionary of italy    
-    history = [val for val in italy_dict]
-    affected = [italy_dict[val] for val in italy_dict]
-    history = history[23:len(history)]
-    affected = affected[23:len(affected)]
+    #get total cases
+    affected = [dic.get('totale_casi') for dic in italy_list]
+    #getting all dates
+    history =[dic.get('data') for dic in italy_list]
 
     #creating x and y coordinates
-    x = [i for i in range(0,len(history))]
+    x = [i for i in range(0,len(italy_list))]
     y = [int(num) for num in affected]
-    ticks = [parse(val) for val in history]
+    ticks = [parse(date) for date in history]
 
     #creating the figure with matplotlib
     fig = Figure(figsize=(10, 4))
@@ -141,7 +140,7 @@ def save_html_word():
         
         
 #getting per region data        
-#regions_data = track.get_Italy_Regions()
+regions_data = track.get_Italy_Regions()
         
 #creating html for region table
 def create_html_italyTable():
@@ -152,8 +151,8 @@ def create_html_italyTable():
 <table align="center">
     <tr>
         <th>Regione</th>
-        <th>Numero Infetti</th>
-        <th>Totali Positivi al Test</th>
+        <th>Numero Totale Infetti</th>
+        <th>Ricoverati con Sintomi</th>
         <th>Terapia Intensiva</th>
         <th>Isolamento Domiciliare</th>
         <th>Guariti</th>
@@ -165,12 +164,12 @@ def create_html_italyTable():
     #adding the data to the stirng for every region
     for dic in regions_data:
         html += "<tr>\n"
-        html += "<td>{}</td>\n".format(dic.get('regione'))
-        html += "<td>{}</td>\n".format(dic.get('numero infetti'))
-        html += "<td>{}</td>\n".format(dic.get('casi totali'))
-        html += "<td>{}</td>\n".format(dic.get('terapia intensiva'))
-        html += "<td>{}</td>\n".format(dic.get('isolamento domiciliare'))
-        html += "<td>{}</td>\n".format(dic.get('guariti'))
+        html += "<td>{}</td>\n".format(dic.get('denominazione_regione'))
+        html += "<td>{}</td>\n".format(dic.get('totale_attualmente_positivi'))
+        html += "<td>{}</td>\n".format(dic.get('ricoverati_con_sintomi'))
+        html += "<td>{}</td>\n".format(dic.get('terapia_intensiva'))
+        html += "<td>{}</td>\n".format(dic.get('isolamento_domiciliare'))        
+        html += "<td>{}</td>\n".format(dic.get('dimessi_guariti'))
         html += "<td>{}</td>\n".format(dic.get('deceduti'))
         html += "<td>{}</td>\n".format(dic.get('tamponi'))
         html += "</tr>\n"
@@ -199,7 +198,7 @@ def create_pie_chart():
     total_others = 0 #other regions total tamponi
     region = ''
     for dic in regions_data:
-        region = dic.get('regione')
+        region = dic.get('denominazione_regione')
         if region in wanted_regions:
             labels.append(region)
             sizes.append(dic.get('tamponi'))
@@ -232,6 +231,6 @@ save_html_from_sole_24()
 
 save_html_word()
 
-#create_html_italyTable()
+create_html_italyTable()
 
-#create_pie_chart()
+create_pie_chart()

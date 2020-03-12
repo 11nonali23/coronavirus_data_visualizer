@@ -9,7 +9,7 @@ The table and the pie chart are no longer updated for changes onto API and for l
 
 * [Github api cv data](https://github.com/ExpDev07/coronavirus-tracker-api)- Github page
 
-* [Github second api cv data](https://github.com/ondata/covid19italia/master/) - second Github page
+* [Github second api cv data](https://github.com/pcm-dpc/COVID-19) -Protezione Civile 
 
 * [Site for other data](https://lab24.ilsole24ore.com/coronavirus/)
 
