@@ -175,16 +175,16 @@ def general_updates():
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
         <div class="column">
-            <h2 style="color: #ff3300; text-align: center">TOTAL: {}</h2>
+            <h2 style="color: #ff3300; text-align: center"><p>TOTAL:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #181c6b; text-align: center">POSITIVES: {}</h2>
+            <h2 style="color: #181c6b; text-align: center"><p>POSITIVES:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #994d00; text-align: center">DEATHS: {}</h2>
+            <h2 style="color: #994d00; text-align: center"><p>DEATHS:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #009933; text-align: center">RECOVERED: {}</h2>
+            <h2 style="color: #009933; text-align: center"> <p>RECOVERED:</p> <p>{}</p></h2>
         </div>
     </div>
     <div class="row">
