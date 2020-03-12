@@ -2,8 +2,9 @@
 
 This application was created to test my learning in python with matplotlib, beatifoulsoup and general statements. It visualize the data of the people discovered having coronavirus in italy
 
-##UPDATES:
-The table and the pie chart are no longer updated for changes onto API and for lack of time. However both of them remains visible on the page to show every part of the work I did. If someone wants to contribute please contact me.
+## UPDATES
+Data now are more accurate because the most are fetched from Protezione
+Civile site
 
 ## Referalls
 
