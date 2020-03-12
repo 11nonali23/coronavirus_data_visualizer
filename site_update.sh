@@ -6,7 +6,7 @@ cd /home/andrea/Scaricati/ProtCivileDati/COVID-19
 
 git pull
 
-echo "done updating\n\n"
+echo "done updating"
 
 echo "script will update html code"
 
