@@ -16,4 +16,6 @@ python create_html.py
 
 echo "done updating"
 
+exit
+
 exec bash
