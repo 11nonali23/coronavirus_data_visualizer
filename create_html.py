@@ -202,7 +202,7 @@ def general_updates():
     </div>
     <div class="percentage_shower" style="margin-top: 40px;">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>circa il {}%</b>delle persone sono decedute (i contagiati potrebbero essere molti più degli attuali)</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>circa il {}%</b> delle persone sono decedute (i contagiati potrebbero essere molti più degli attuali)</h3></li>
             <li><h3 style="font-family: courier,arial,helvetica;"><b>circa il {}%</b> delle persone sono guarite (i contagiati potrebbero essere molti più degli attuali)</h3></li>
         </ul>
     </div>""".format(str(data.get('totale_casi')), str(data.get('totale_attualmente_positivi')), str(data.get('deceduti')), str(data.get('dimessi_guariti')),
