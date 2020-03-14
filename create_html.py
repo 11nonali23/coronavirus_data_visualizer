@@ -183,7 +183,7 @@ def general_updates():
             <h2 style="color: #994d00; text-align: center"><p>DEATHS:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #009933; text-align: center"> <p>RECOVERED:</p> <p>{}</p></h2>
+            <h2 style="color: #009933; text-align: center"> <p>RECOVERED (GUARITI):</p> <p>{}</p></h2>
         </div>
     </div>
     <div class="row">
