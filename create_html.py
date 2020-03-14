@@ -174,16 +174,16 @@ def general_updates():
     <link rel="stylesheet" type="text/css" href="general_info.css">
     <div class="row">
         <div class="column">
-            <h2 style="color: #91067a; text-align: center"><p>TOTAL:</p> <p>{}</p></h2>
+            <h2 style="color: #91067a; text-align: center"><p>TOTALI:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #181c6b; text-align: center"><p>POSITIVES:</p> <p>{}</p></h2>
+            <h2 style="color: #181c6b; text-align: center"><p>POSITIVI:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #994d00; text-align: center"><p>DEATHS:</p> <p>{}</p></h2>
+            <h2 style="color: #994d00; text-align: center"><p>MORTI:</p> <p>{}</p></h2>
         </div>
         <div class="column">
-            <h2 style="color: #009933; text-align: center"> <p>RECOVERED (GUARITI):</p> <p>{}</p></h2>
+            <h2 style="color: #009933; text-align: center"> <p>GUARITI:</p> <p>{}</p></h2>
         </div>
     </div>
     <div class="row">
@@ -202,8 +202,8 @@ def general_updates():
     </div>
     <div class="percentage_shower" style="margin-top: 40px;">
         <ul>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the TESTED people are recovered from virus disease</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>circa il {}%</b>delle persone sono decedute (i contagiati potrebbero essere molti più degli attuali)</h3></li>
+            <li><h3 style="font-family: courier,arial,helvetica;"><b>circa il {}%</b> delle persone sono guarite (i contagiati potrebbero essere molti più degli attuali)</h3></li>
         </ul>
     </div>""".format(str(data.get('totale_casi')), str(data.get('totale_attualmente_positivi')), str(data.get('deceduti')), str(data.get('dimessi_guariti')),
                      plus_tot, "+" + str(data.get('nuovi_attualmente_positivi')), plus_deaths, plus_rec, dperc, rperc)
