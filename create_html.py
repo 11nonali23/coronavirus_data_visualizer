@@ -142,7 +142,7 @@ def italy_death_rec_graph():
     ax.set_ylabel('values for both', size=20)
     ax.set_title('Deaths and Recovers', size=40)
 
-    ax.legend(["deceduti", "dimessi e guariti"], prop={'size': 13})
+    ax.legend(["deceduti", "dimessi e guariti"], prop={'size': 15})
     
     #save html with library function
     mpld3.save_html(fig, 'dynamic_html_files/deceduti_rimessi.html')
