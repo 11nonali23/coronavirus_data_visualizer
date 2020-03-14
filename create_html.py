@@ -100,7 +100,7 @@ def italy_cure_graph():
     ax.set_ylabel('values for all', size=20)
     ax.set_title('Growth of care methods', size=40)
 
-    ax.legend(["terapia intensiva", "ricoverati con sintomi", "isolamento domiciliare"])
+    ax.legend(["terapia intensiva", "ricoverati con sintomi", "isolamento domiciliare"], prop={'size': 13})
     
     #save html with library function
     mpld3.save_html(fig, 'dynamic_html_files/cure_graph.html')
@@ -142,7 +142,7 @@ def italy_death_rec_graph():
     ax.set_ylabel('values for both', size=20)
     ax.set_title('Deaths and Recovers', size=40)
 
-    ax.legend(["deceduti", "dimessi e guariti"])
+    ax.legend(["deceduti", "dimessi e guariti"], prop={'size': 13})
     
     #save html with library function
     mpld3.save_html(fig, 'dynamic_html_files/deceduti_rimessi.html')
