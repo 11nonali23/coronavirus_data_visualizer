@@ -305,7 +305,7 @@ def create_pie_chart():
     labels = []
     sizes = []
 
-    #setting most amount of swabs regions
+    #setting most amount of swabs fpor 8 regions
     for i in range(0,7):
         max_size = 0
         for dic in regions_data:
