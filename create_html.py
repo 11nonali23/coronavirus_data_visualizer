@@ -324,7 +324,7 @@ def create_pie_chart():
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
             shadow=True, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    plt.tight_layout()
+    #plt.tight_layout()
 
     mpld3.save_html(fig1, "dynamic_html_files/tamponi_pie.html")
     
