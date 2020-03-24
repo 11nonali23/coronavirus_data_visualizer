@@ -17,22 +17,25 @@ def create_pie_chart():
     wanted_regions = {"Lombardia"}
     max_size = 0
     max_reg = "Lombardia"
+
     #initializing labels and sizes only with regions i want
     labels = []
     sizes = []
+
     #setting most amount of swabs regions
-    for i in range(0,8):
+    for i in range(0,7):
         max_size = 0
         for dic in regions_data:
-            if dic.get('tamponi') > max_size and dic.get('denominazione_regione') not in wanted_regions:
+            if dic.get('denominazione_regione') not in wanted_regions and dic.get('tamponi') > max_size:
                 max_size = dic.get('tamponi')
                 max_reg = dic.get('denominazione_regione')
             else:
                 continue
-    wanted_regions.add(max_reg)
+        wanted_regions.add(max_reg)
     
     
-    total_others = 0 #other regions total tamponi
+    total_others = 0 #other regions total swabs
+
     region = ''
     for dic in regions_data:
         region = dic.get('denominazione_regione')
@@ -49,7 +52,7 @@ def create_pie_chart():
     #explode = [0.1 for val in labels]  #setting margin between slices
 
     fig1, ax1 = plt.subplots(figsize=(9, 11))
-    ax1.pie(sizes, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 15}, labeldistance=1,
+    ax1.pie(sizes, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 15}, labeldistance=0.98,
             shadow=False, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
