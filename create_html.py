@@ -318,10 +318,10 @@ def create_pie_chart():
     labels.append('Other Regions')
     sizes.append(total_others)
 
-    explode = [0.05 for val in labels]  #setting margin between slices
+    explode = [0.1 for val in labels]  #setting margin between slices
 
     fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 12}, labeldistance=1
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 20}, labeldistance=1
             shadow=True, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
