@@ -1,22 +1,37 @@
 from matplotlib.figure import Figure
 import mpld3
+from mpld3 import plugins
 import tracker as track
 import numpy as np
 
 regions_data = track.get_Italy_Regions()
 
+def set_text(pct, allvals):
+    absolute = int(pct/100.*np.sum(allvals))
+    return "{:.1f}%".format(pct, absolute)
 
 
 def create_pie_chart():
     
     import matplotlib.pyplot as plt
-    
-    #setting regions i want to display
-    wanted_regions = {'Lombardia','Emilia Romagna','Veneto','Marche','Piemonte','Toscana','Lazio','Campania'}
-    
+    wanted_regions = {"Lombardia"}
+    max_size = 0
+    max_reg = "Lombardia"
     #initializing labels and sizes only with regions i want
     labels = []
     sizes = []
+    #setting most amount of swabs regions
+    for i in range(0,8):
+        max_size = 0
+        for dic in regions_data:
+            if dic.get('tamponi') > max_size and dic.get('denominazione_regione') not in wanted_regions:
+                max_size = dic.get('tamponi')
+                max_reg = dic.get('denominazione_regione')
+            else:
+                continue
+    wanted_regions.add(max_reg)
+    
+    
     total_others = 0 #other regions total tamponi
     region = ''
     for dic in regions_data:
@@ -27,30 +42,19 @@ def create_pie_chart():
         else:
             total_others = total_others + int(dic.get('tamponi'))
 
+    #appending other regions and other regions total sum
+    labels.append('Other Regions')
+    sizes.append(total_others)
 
-    explode = [0.1 for val in labels]  #setting margin between slices
+    #explode = [0.1 for val in labels]  #setting margin between slices
 
-    fig, ax = plt.subplots(figsize=(10, 7), subplot_kw=dict(aspect="equal"))
+    fig1, ax1 = plt.subplots(figsize=(9, 11))
+    ax1.pie(sizes, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 15}, labeldistance=1,
+            shadow=False, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-    def func(pct, allvals):
-        absolute = int(pct/100.*np.sum(allvals))
-        return "{:.1f}%".format(pct, absolute)
 
 
-    wedges, texts, autotexts = ax.pie(sizes, explode = explode, labels=labels, 
-					autopct=lambda pct: func(pct, sizes),
-                                  		textprops=dict(color="w"))
-
-    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-    plt.setp(autotexts, size=14, weight="bold")
-
-    ax.set_title("Swabs for regions in percentage")
-
-    plt.tight_layout()
-    
-    plt.show()
-
-    mpld3.save_html(fig, "/home/andrean/Scrivania/ht.html")
+    mpld3.save_html(fig1, "/home/andrean/Scrivania/ht.html")
 	
 create_pie_chart()
