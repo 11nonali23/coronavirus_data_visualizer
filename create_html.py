@@ -341,7 +341,7 @@ def create_pie_chart():
 
 
 
-    mpld3.save_html(fig1, "/home/andrean/Scrivania/ht.html")
+    mpld3.save_html(fig1, "/dynamic_html_files/tamponi_pie.html")
     
    
 #exec methods
