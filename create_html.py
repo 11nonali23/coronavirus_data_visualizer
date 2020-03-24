@@ -321,12 +321,9 @@ def create_pie_chart():
     explode = [0.1 for val in labels]  #setting margin between slices
 
     fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', textprops={'fontsize': 20}, labeldistance=1
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
             shadow=True, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-    plt.axis('off')
-    #plt.tight_layout()
 
     mpld3.save_html(fig1, "dynamic_html_files/tamponi_pie.html")
     
