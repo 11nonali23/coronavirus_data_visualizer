@@ -6,38 +6,63 @@ import tracker as track
 
 #parse the date to remove the year
 def parse(date):
+   
+    result_str = ""
+
+    #cutting first uneuseful elements
+    start_char = 5
+    date = date[start_char : ]
+
+    counter = 0 #this variable will end the loop after 15 loops for security if API changes
     
-    #getting last element
-    date_len = len(date) - 1
-    
-    #removing the year part
-    date = date[5: date_len]
-    
-    result = ""
-    
-    #adding only day and month
     for char in date:
-        if char == " ":
+        if char == 'T' or counter > 14:
             break
-        result += char
-    
-    return result
+        else:
+            if char == '-':
+                result_str += '/'   
+                counter = counter + 1
+            else:
+                result_str += char   
+                counter = counter + 1
+
+    return result_str     
+
 
 #getting italian dictionary
 italy_list = track.get_Italy()
+
+#function that create a x label writing the date alternating empty string and correct date
+def set_ticks():
+    #getting all dates
+    history =[dic.get('data') for dic in italy_list]
+
+    ticks = []
+    add = True
+    for date in reversed(history): # i reverse the array because i want to show EVERYTIME the last date
+        if add:
+            ticks.append(parse(date))
+            add = False
+        else:
+            ticks.append("")
+            add = True
+    #restoring correct positions
+    ticks = reversed(ticks)
+    
+    return ticks
+
+#global xlabel variable
+ticks = set_ticks()
 
 #creating italy graph with mpld3 and matplotlib and saving it into html file
 def italy_graph():
     
     #get total cases
     affected = [dic.get('totale_casi') for dic in italy_list]
-    #getting all dates
-    history =[dic.get('data') for dic in italy_list]
 
     #creating x and y coordinates
     x = [i for i in range(0,len(italy_list))]
     y = [int(num) for num in affected]
-    ticks = [parse(date) for date in history]
 
     #creating the figure with matplotlib
     fig = Figure(figsize=(10, 4))
@@ -68,18 +93,13 @@ def italy_cure_graph():
     ricoverati = [dic.get('ricoverati_con_sintomi') for dic in italy_list]
     domiciliare = [dic.get('isolamento_domiciliare') for dic in italy_list]
 
-    #getting all dates
-    history =[dic.get('data') for dic in italy_list]
-
     #creating x and y coordinates
     x = [i for i in range(0,len(italy_list))]
     y_intensiva = [int(num) for num in intensiva]
     y_ric_sintomi = [int(num) for num in ricoverati]
     y_domiciliare = [int(num) for num in domiciliare]
     
-    
-    ticks = [parse(date) for date in history]
-
+    ticks = set_ticks()
     #creating the figure with matplotlib
     fig = Figure(figsize=(10, 4))
 
@@ -112,16 +132,12 @@ def italy_death_rec_graph():
     deceduti = [dic.get('deceduti') for dic in italy_list]
     dimessi = [dic.get('dimessi_guariti') for dic in italy_list]
 
-    #getting all dates
-    history =[dic.get('data') for dic in italy_list]
-
     #creating x and y coordinates
     x = [i for i in range(0,len(italy_list))]
     y_deceduti = [int(num) for num in deceduti]
     y_dimessi = [int(num) for num in dimessi]
-    
-    
-    ticks = [parse(date) for date in history]
+   
+    ticks = set_ticks()
 
     #creating the figure with matplotlib
     fig = Figure(figsize=(10, 4))
