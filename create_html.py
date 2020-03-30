@@ -184,7 +184,7 @@ def general_updates():
     plus_rec = "+" + str(data.get('dimessi_guariti') - italy_list[(last_element - 1)].get('dimessi_guariti'))
     
     #getting plus amount of total
-    plus_tot = "+" + str(data.get('totale_casi') - italy_list[(last_element - 1)].get('totale_casi'))
+    plus_tot = "+" + str(int(data.get('totale_casi')) - italy_list[(last_element - 1)].get('totale_casi'))
     
     html = """
     <link rel="stylesheet" type="text/css" href="general_info.css">
