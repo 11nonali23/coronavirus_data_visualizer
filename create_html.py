@@ -221,8 +221,8 @@ def general_updates():
             <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of known people are dead</h3></li>
             <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of known people are healed </h3></li>
         </ul>
-    </div>""".format(str(data.get('totale_casi')), str(data.get('totale_attualmente_positivi')), str(data.get('deceduti')), str(data.get('dimessi_guariti')),
-                     plus_tot, "+" + str(data.get('nuovi_attualmente_positivi')), plus_deaths, plus_rec, dperc, rperc)
+    </div>""".format(str(data.get('totale_casi')), str(data.get('totale_positivi')), str(data.get('deceduti')), str(data.get('dimessi_guariti')),
+                     plus_tot, "+" + str(data.get('variazione_totale_positivi')), plus_deaths, plus_rec, dperc, rperc)
     
         
     
@@ -290,7 +290,7 @@ def create_html_italyTable():
     for dic in regions_data:
         html += "<tr>\n"
         html += "<td>{}</td>\n".format(dic.get('denominazione_regione'))
-        html += "<td>{}</td>\n".format(dic.get('totale_attualmente_positivi'))
+        html += "<td>{}</td>\n".format(dic.get('totale_positivi'))
         html += "<td>{}</td>\n".format(dic.get('ricoverati_con_sintomi'))
         html += "<td>{}</td>\n".format(dic.get('terapia_intensiva'))
         html += "<td>{}</td>\n".format(dic.get('isolamento_domiciliare'))        
