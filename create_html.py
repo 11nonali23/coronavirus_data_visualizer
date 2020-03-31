@@ -175,7 +175,7 @@ def general_updates():
     dperc = str(int(100/(int((data.get('totale_casi')))/int((data.get('deceduti'))))))
     
     #recovered percentual
-    rperc = str(int(100/(int((data.get('totale_casi'))))/int((data.get('dimessi_guariti')))))
+    rperc = str(int(100/(int((data.get('totale_casi')))/int((data.get('dimessi_guariti'))))))
     
     #getting plus amount of deaths
     plus_deaths = "+" + str(data.get('deceduti') - italy_list[(last_element - 1)].get('deceduti'))
