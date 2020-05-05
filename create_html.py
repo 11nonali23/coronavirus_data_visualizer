@@ -226,44 +226,6 @@ def general_updates():
     
         
     
-    with open('dynamic_html_files/general_updates.html', 'w') as file:
-        file.write(html)
-        
-#get data from api server and create file to after include in index.html with iframe
-def save_html_word():
-    
-    #get latest data
-    data = track.getLatest()
-    
-    #get percentage of latest data
-    percentage = track.get_world_percentage()
-    
-    html = """
-    <link rel="stylesheet" type="text/css" href="general_info.css">
-    <div class="row">
-        <div class="column">
-            <h2 style="color: #ff3300; text-align: center"><p>TOTAL:</p> <p>{}</p></h2>
-        </div>
-        <div class="column">
-            <h2 style="color: #994d00; text-align: center"><p>DEATHS:</p> <p>{}</p></h2>
-        </div>
-        <div class="column">
-            <h2 style="color: #009933; text-align: center"><p>HEALINGS:</p> <p>{}</p></h2>
-        </div>
-    </div>
-    <div class="percentage_shower">
-        <ul>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b> about {}%</b> of the known people are dead</h3></li>
-            <li><h3 style="font-family: courier,arial,helvetica;"><b>about {}%</b> of the known people are recovered from virus disease</h3></li>
-        </ul>
-    </div>
-    """.format(data.get('confirmed'), data.get('deaths'), data.get('recovered'), percentage.get('deaths'), percentage.get('recovered'))
-
-    #write on file
-    with open('dynamic_html_files/world.html', 'w') as file:
-        file.write(html)
-        
-        
 #getting per region data        
 regions_data = track.get_Italy_Regions()
         
@@ -364,8 +326,6 @@ def create_pie_chart():
 italy_graph()
 
 general_updates()
-
-save_html_word()
 
 create_html_italyTable()
 

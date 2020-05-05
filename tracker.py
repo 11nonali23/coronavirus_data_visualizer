@@ -2,28 +2,6 @@ import requests, json
 
 #This script is made to request and parse data (JSON format)
 
-#load JSON file from the implicit url
-def loadJSON(url = 'https://coronavirus-tracker-api.herokuapp.com/all'):
-    data = requests.get(url)
-    content = data.content
-    output = json.loads(content)
-    return output
-
-data = loadJSON()
-
-#return confirmed cases
-def get_confirmed():
-    return data.get('latest').get('confirmed')
-
-#return deaths
-def get_deaths():
-    return data.get('latest').get('deaths')
-
-#return recovered people
-def get_recovered():
-    return data.get('latest').get('recovered')
-
-
 #return latest data in global scale
 def getLatest():
     latest =	{
@@ -57,8 +35,6 @@ def get_Italy():
         return data
             
     return None
-
-get_Italy()
 
 def get_Italy_Regions():
     
