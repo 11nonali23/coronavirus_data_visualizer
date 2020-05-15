@@ -10,7 +10,7 @@ echo "done updating"
 
 #getting into project dir and update html code with python script
 echo "script will update html code"
-cd /home/andrea/Scrivania/ncovid2019_data_visualizer/
+cd /home/andrea/Documenti/ncovid2019_data_visualizer/
 python create_html.py
 echo "done updating"
 
