@@ -4,13 +4,13 @@
 
 #getting into protezione civile and pull data
 echo "script will update Protezione civile git repository"
-cd /home/andrean/Scaricati/ProtCivileDati/COVID-19/
+cd /home/andrea/Scaricati/ProtCivileDati/COVID-19/
 git pull
 echo "done updating"
 
 #getting into project dir and update html code with python script
 echo "script will update html code"
-cd /home/andrean/Scrivania/ncovid2019_data_visualizer/
+cd /home/andrea/Scrivania/ncovid2019_data_visualizer/
 python create_html.py
 echo "done updating"
 

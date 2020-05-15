@@ -28,7 +28,7 @@ def get_world_percentage():
 
 def get_Italy(): 
     
-    with open ('/home/andrean/Scaricati/ProtCivileDati/COVID-19/dati-json/dpc-covid19-ita-andamento-nazionale.json', 'r') as file:
+    with open ('/home/andrea/Scaricati/ProtCivileDati/COVID-19/dati-json/dpc-covid19-ita-andamento-nazionale.json', 'r') as file:
         
         data = json.load(file)
         
@@ -38,7 +38,7 @@ def get_Italy():
 
 def get_Italy_Regions():
     
-    with open ('/home/andrean/Scaricati/ProtCivileDati/COVID-19/dati-json/dpc-covid19-ita-regioni.json', 'r') as file:
+    with open ('/home/andrea/Scaricati/ProtCivileDati/COVID-19/dati-json/dpc-covid19-ita-regioni.json', 'r') as file:
         
         data = json.load(file)
         
