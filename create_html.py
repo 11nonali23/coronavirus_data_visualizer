@@ -38,9 +38,9 @@ def set_ticks():
     history =[dic.get('data') for dic in italy_list]
 
     ticks = []
-    add = 2
+    add = 3 
     for date in reversed(history): # i reverse the array because i want to show EVERYTIME the last date
-        if add == 2:
+        if add == 3:
             ticks.append(parse(date))
             add = 0
         else:
