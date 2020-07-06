@@ -4,6 +4,8 @@ import tracker as track
 
 #This script create html file that are added with iframe into index.html
 
+TICKS_FREQUENCY = 5
+
 #parse the date to remove the year
 def parse(date):
    
@@ -38,9 +40,9 @@ def set_ticks():
     history =[dic.get('data') for dic in italy_list]
 
     ticks = []
-    add = 3 
+    add = TICKS_FREQUENCY 
     for date in reversed(history): # i reverse the array because i want to show EVERYTIME the last date
-        if add == 3:
+        if add == TICKS_FREQUENCY:
             ticks.append(parse(date))
             add = 0
         else:
