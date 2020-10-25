@@ -4,7 +4,7 @@ import tracker as track
 
 #This script create html file that are added with iframe into index.html
 
-TICKS_FREQUENCY = 10000000000
+TICKS_FREQUENCY = 5
 
 #parse the date to remove the year
 def parse(date):
@@ -37,8 +37,20 @@ italy_list = track.get_Italy()
 #function that create a x label writing the date alternating empty string and correct date
 def set_ticks():
     #getting all dates
-    history = [dic.get('data') for dic in italy_list]
-    ticks = ["" for date in history]
+    history =[dic.get('data') for dic in italy_list]
+
+    ticks = []
+    add = TICKS_FREQUENCY 
+    for date in reversed(history): # i reverse the array because i want to show EVERYTIME the last date
+        if add == TICKS_FREQUENCY:
+            ticks.append(parse(date))
+            add = 0
+        else:
+            ticks.append("")
+            add = add + 1
+    #restoring correct positions
+    ticks = reversed(ticks)
+    
     return ticks
 
 #global xlabel variable
